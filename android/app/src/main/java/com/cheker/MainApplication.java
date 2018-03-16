@@ -1,4 +1,4 @@
-package com.skychat;
+package com.cheker;
 
 import android.app.Application;
 

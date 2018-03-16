@@ -6,7 +6,74 @@ import {
     KeyboardAvoidingView
 } from 'react-native'
 
-export default class Login extends Component {
+import {StackNavigator} from 'react-navigation'
+import Main from './Main'
+
+class LoginSreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {username: '', password:''};
+      }
+
+      
+
+    oPressLogin = () => {
+        let username = this.state.username;
+        var conn = new WebSocket('ws://ancient-reaches-48479.herokuapp.com/');
+        conn.onopen = function () { 
+            console.log("Connected to the signaling server"); 
+            
+	
+            if (username.length > 0) { 
+                send({ 
+                type: "login", 
+                name: username 
+                }); 
+            }
+            
+
+         };
+         //when we got a message from a signaling server 
+        conn.onmessage = function (msg) { 
+            console.log("Got message", msg);
+            console.log("Got message", msg.data);
+            
+            var data = JSON.parse(msg.data); 
+            
+            switch(data.type) { 
+            case "login": 
+                handleLogin(data.success); 
+                break; 
+            default: 
+                break; 
+            }
+        };
+        conn.onerror = function (err) { 
+            console.log("Got error", err); 
+         };
+           
+         //alias for sending JSON encoded messages 
+         function send(message) { 
+            console.log("Value of message", message); 
+            //attach the other peer username to our messages  
+            conn.send(JSON.stringify(message)); 
+         };
+
+        function handleLogin(success) { 
+            if (success === false) { 
+               alert("Ooops...try a different username"); 
+            } else { 
+                alert("Login OK");     
+            } 
+         };
+
+         
+        // Fetch data from server
+        this.props.navigation.navigate('Main')
+
+
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -23,22 +90,25 @@ export default class Login extends Component {
                             </View>
                             <View style={styles.infoContainer}>
                                 <TextInput style={styles.input}
+                                    onChangeText={(username) => this.setState({username})}
                                     placeholder="Enter username/email"
                                     placeholderTextColor='rgba(255,255,255,0.8)'
                                     keyboardType='email-address'
                                     returnKeyType='next'
                                     autoCorrect={false}
-                                    onSubmitEditing={()=> this.refs.txtPassword.focus()}
+                                    onSubmitEditing={()=> this.refs.txtPassword.focus()}      
                                 />
                                 <TextInput style={styles.input} 
+                                    onChangeText={(password) => this.setState({password})}
                                     placeholder="Enter password"
                                     placeholderTextColor='rgba(255,255,255,0.8)'
                                     returnKeyType='go'
                                     secureTextEntry
                                     autoCorrect={false}
                                     ref={"txtPassword"}
+                                    
                                 />
-                                <TouchableOpacity style={styles.buttonContainer}>
+                                <TouchableOpacity style={styles.buttonContainer} onPress={this.oPressLogin}>
                                     <Text style={styles.buttonText}>SIGN IN</Text>
                                 </TouchableOpacity>
                             </View>
@@ -98,3 +168,25 @@ const styles = StyleSheet.create({
         fontSize: 18
     }
 })
+
+
+const LoginStackNav = StackNavigator (
+    {
+        LoginSreen : { screen : LoginSreen},
+        Main : {screen : Main},
+    },
+    {
+        navigationOptions : {
+            header: false,
+        }
+    }
+    
+)
+
+export default class Login extends Component {
+    render() {
+        return (
+            <LoginStackNav />
+        )
+    }
+}

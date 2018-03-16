@@ -5,17 +5,25 @@ import {
 	Text,
 	View
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import Main from './components/Main';
-import MessageTab from './components/tabs/MessageTab';
-import Chat from './components/Chat';
+
+import Splash from './components/Splash'
+import Login from './components/Login'
 
 
 
 export default class App extends Component {
-	render() {
-		return (
-				<Main />	
-		);
-	}
+	constructor(props) {
+        super(props);
+        this.state = { currentScreen: 'Splash' };
+        console.log('Start doing some tasks for about 3 seconds')
+        setTimeout(()=>{
+            console.log('Done some tasks for about 3 seconds')
+            this.setState({ currentScreen: 'Login' })
+        }, 1000)
+    }
+    render() {
+        const { currentScreen } = this.state
+        let mainScreen = currentScreen === 'Splash' ? <Splash /> : <Login />
+        return mainScreen
+    }
 }

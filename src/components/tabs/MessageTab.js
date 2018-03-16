@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Header, List, ListItem, Left, Right, Thumbnail, Body, Container, Text, Content, Icon } from 'native-base';
 
-import {View, FlatList, Platform, Alert, TouchableOpacity } from 'react-native'
+import {View, FlatList, Platform, Alert, TouchableOpacity , Image} from 'react-native'
 
 import messageList from '../../config/messageList';
 
 export default class MessageTab extends Component {
 	static navigationOptions = {	
-        title: "NativeBase Example",
+        title: "Tin nhắn",
 		tabBarIcon: ({ tintColor }) => {
-			return <Icon name="ios-chatbubbles-outline" style={{ color: tintColor }} />
+			
+			return <Image
+				source={require("../../images/icons/message_tab.png")}
+				style={{width : 24, height: 24, tintColor: "#822682" }}
+			/>
+			//return <Icon name="ios-chatbubbles-outline" style={{ color: tintColor }} />
 		}
+		
 	}
 
 	onPress = () => {

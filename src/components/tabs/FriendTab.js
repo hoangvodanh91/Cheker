@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Text, Content, Icon } from 'native-base';
+import {Image} from 'react-native'
 
 export default class FriendTab extends Component {
     static navigationOptions = {
         tabBarIcon: ({ tintColor }) => {
-            return <Icon name="md-people" style={{ color: tintColor }} />
+            return <Image
+            source={require("../../images/icons/friend_tab.png")}
+            style={{width : 24, height: 24, tintColor: "#822682" }}
+        />
+
+            //<Icon name="md-people" style={{ color: tintColor }} />
         }
     }
     render() {

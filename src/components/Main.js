@@ -11,31 +11,6 @@ import GeneralTab from './tabs/GeneralTab';
 
 import Chat from './Chat';
 
-class LogoTitle extends Component {
-    render() {
-      return (
-        <Image
-          source={require('../images/spiro.png')}
-          style={{ width: 30, height: 30 }}
-        />
-      );
-    }
-  }
-
-class ModalScreen extends Component {
-    render() {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-          <Button
-            onPress={() => this.props.navigation.goBack()}
-            title="Dismiss"
-          />
-        </View>
-      );
-    }
-  }
-
 export default class Main extends Component {
    
     render() {
@@ -48,6 +23,10 @@ const MessageTabNav = StackNavigator({
     Chat: { screen: Chat },
   });
   
+const ContactTabNav = StackNavigator({
+    ContactTab: { screen: ContactTab },
+    Chat: { screen: Chat },
+  });
 
 
 const MainTabNavigator = TabNavigator(
@@ -56,7 +35,7 @@ const MainTabNavigator = TabNavigator(
             screen: MessageTabNav
         },
         ContactTab: {
-            screen: ContactTab
+            screen: ContactTabNav
         },
         FriendTab: {
             screen: FriendTab

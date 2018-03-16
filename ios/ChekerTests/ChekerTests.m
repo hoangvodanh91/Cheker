@@ -16,11 +16,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface SkyChatTests : XCTestCase
+@interface ChekerTests : XCTestCase
 
 @end
 
-@implementation SkyChatTests
+@implementation ChekerTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
