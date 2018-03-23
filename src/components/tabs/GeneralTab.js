@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Text, Content, Icon } from 'native-base';
+import { ListItem, Left, Body, Right, Text, Thumbnail , Content, List, Container, Header} from 'native-base';
 import {Image} from 'react-native'
+import ProfileUser from '../Profile'
+
 
 
 export default class GeneralTab extends Component {
     static navigationOptions = {
+        title: "Tổng quát",
         tabBarIcon: ({ tintColor }) => {
             return <Image
             source={require("../../images/icons/general_tab.png")}
@@ -13,13 +16,36 @@ export default class GeneralTab extends Component {
             //<Icon name="ios-add-outline" style={{ color: tintColor }} />
         }
     }
-    render() {
-        return (<Container>
-            <Content>
-                <Text>
-                    This is General Tab
-                </Text>
-            </Content>
-        </Container>);
+    handleClick = () => {
+		
+		this.props.navigation.navigate('ProfileUser')
+		//Alert.alert('Touched')
     }
+    
+   
+
+	render() {
+       return (
+        <Container>
+           <Content>
+            <List>
+            <ListItem avatar button={true} onPress={this.handleClick}>
+              <Left>
+                <Thumbnail source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }} />
+              </Left>
+              <Body>
+                <Text>Jason Hoang</Text>
+                <Text note>Trang cá nhân của bạn</Text>
+              </Body>
+              <Right>
+                <Text note>3:43 pm</Text>
+              </Right>
+            </ListItem>
+            </List>   
+            </Content>
+            </Container>
+       )
+	
+			
+	}
 }

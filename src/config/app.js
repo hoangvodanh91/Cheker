@@ -6,6 +6,7 @@ export default {
   screenWidth: window.width,
   screenHeight: window.height,
   thumbnailHeight: 100,
+  thumnailWidth: 100,
   useRCTView: true, //debug or not?
   video: {
     minWidth: 500,

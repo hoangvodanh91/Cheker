@@ -25,6 +25,8 @@ export default class MessageTab extends Component {
 		//Alert.alert('Touched')
 	}
 
+	componentDidMount() {}
+
 	render() {
 		return (	
 
@@ -32,8 +34,8 @@ export default class MessageTab extends Component {
 					data={messageList}
 					renderItem={({item})=>{
 						return (
-							<TouchableOpacity onPress={this.onPress}>
-							<ListItem avatar>
+							
+							<ListItem avatar button={true} onPress={this.onPress} >
 							<Left>
 								<Thumbnail source={{ uri: item.avatar_url }} />
 							</Left>
@@ -45,9 +47,10 @@ export default class MessageTab extends Component {
 								<Text note>{item.last_time}</Text>
 							</Right>
 							</ListItem>
-							</TouchableOpacity>
+							
 						  );
 					}}
+					keyExtractor={(item, index) => index}
 				>
 				</FlatList>
 	

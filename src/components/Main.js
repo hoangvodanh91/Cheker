@@ -9,7 +9,10 @@ import FriendTab from './tabs/FriendTab';
 import StoryTab from './tabs/StoryTab';
 import GeneralTab from './tabs/GeneralTab';
 
+
 import Chat from './Chat';
+import ProfileUser from './Profile'
+import VideoCall from './videocall/VideoCall'
 
 export default class Main extends Component {
    
@@ -18,24 +21,30 @@ export default class Main extends Component {
     }
 }
 
-const MessageTabNav = StackNavigator({
+const MessageTabStackNav = StackNavigator({
     MessageTab: { screen: MessageTab },
     Chat: { screen: Chat },
   });
   
-const ContactTabNav = StackNavigator({
+const ContactTabStackNav = StackNavigator({
     ContactTab: { screen: ContactTab },
     Chat: { screen: Chat },
+    VideoCall : {screen: VideoCall},
   });
+
+const GeneralTabStackNav = StackNavigator({
+    GeneralTab : { screen : GeneralTab},
+    ProfileUser : { screen : ProfileUser},
+});
 
 
 const MainTabNavigator = TabNavigator(
     {
         MessageTab: {
-            screen: MessageTabNav
+            screen: MessageTabStackNav
         },
         ContactTab: {
-            screen: ContactTabNav
+            screen: ContactTabStackNav
         },
         FriendTab: {
             screen: FriendTab
@@ -44,7 +53,7 @@ const MainTabNavigator = TabNavigator(
             screen: StoryTab
         },
         GeneralTab: {
-            screen: GeneralTab
+            screen: GeneralTabStackNav
         }        
     }, 
     {

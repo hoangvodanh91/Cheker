@@ -17,49 +17,35 @@ export default class ContactTab extends Component {
         }
     }
 
-    state = {
-        modalVisible: false,
-      };
     
-      setModalVisible(visible) {
-        this.setState({modalVisible: visible});
-      }
       
 
-    onPress = () => {
+    onPressChat = () => {
 		
 		this.props.navigation.navigate('Chat')
 		//Alert.alert('Touched')
     }
 
-    onPressVideoCall = () => {
+    onPressVideoCall = (name) => {
 
-
-      this.setModalVisible(!this.state.modalVisible)
+      this.props.navigation.navigate('VideoCall', {
+        name : name
+      })
+      
     }
 
     
     
     render() {
 		return (
-            <View>
-            <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
-         <VideoCall/>
-          
-        </Modal>
+            
               
 				<SectionList 
 					sections={contactList}
 					renderItem={({item})=>{
 						return (
-							<TouchableOpacity onPress={this.onPress}>
-							<ListItem avatar>
+							
+							<ListItem avatar button={true} onPress={this.onPressChat}>
 							<Left>
 								<Thumbnail source={{ uri: item.avatar_url }} />
 							</Left>
@@ -68,13 +54,13 @@ export default class ContactTab extends Component {
 							</Body>
 							<Right>
                             <Button
-                                onPress={this.onPressVideoCall}
+                                onPress={this.onPressVideoCall(item.name)}
                                 title="Call"
                                 color="#841584"
                                 />
 							</Right>
 							</ListItem>
-							</TouchableOpacity>
+							
 						  );
                     }}
                     renderSectionHeader={({section})=>{
@@ -86,7 +72,7 @@ export default class ContactTab extends Component {
                     }}
 				>
 				</SectionList>
-            </View>
+     
 	
 		);
 			
