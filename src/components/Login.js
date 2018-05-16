@@ -61,9 +61,9 @@ class LoginSreen extends Component {
 
         function handleLogin(success) { 
             if (success === false) { 
-               alert("Ooops...try a different username"); 
+               //alert("Ooops...try a different username"); 
             } else { 
-                alert("Login OK"); 
+                //alert("Login OK"); 
                 conn.close()    
             } 
          };

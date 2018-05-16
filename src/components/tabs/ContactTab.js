@@ -26,11 +26,12 @@ export default class ContactTab extends Component {
 		//Alert.alert('Touched')
     }
 
-    onPressVideoCall = (name) => {
+    onPressVideoCall = (username) => {
+        
+        let param = {}; 
+        param["name"] = username;
 
-      this.props.navigation.navigate('VideoCall', {
-        name : name
-      })
+      this.props.navigation.navigate('VideoCall', param)
       
     }
 
@@ -54,7 +55,7 @@ export default class ContactTab extends Component {
 							</Body>
 							<Right>
                             <Button
-                                onPress={this.onPressVideoCall(item.name)}
+                                onPress={()=>this.onPressVideoCall(item.name)}
                                 title="Call"
                                 color="#841584"
                                 />

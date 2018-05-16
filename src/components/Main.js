@@ -25,12 +25,16 @@ const MessageTabStackNav = StackNavigator({
     MessageTab: { screen: MessageTab },
     Chat: { screen: Chat },
   });
-  
+
 const ContactTabStackNav = StackNavigator({
     ContactTab: { screen: ContactTab },
     Chat: { screen: Chat },
     VideoCall : {screen: VideoCall},
-  });
+  }, 
+  {
+    initialRouteName : 'ContactTab',
+  }
+);
 
 const GeneralTabStackNav = StackNavigator({
     GeneralTab : { screen : GeneralTab},

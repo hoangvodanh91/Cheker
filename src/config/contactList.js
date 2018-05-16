@@ -2,11 +2,11 @@ let contactList = [
     {
         data: [
             {
-                "name": 'Hoang van nhat vu',
+                "name": 'trang',
                 "avatar_url": 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
             },
             {
-                "name": 'Hoang van nhat vu',
+                "name": 'vu',
                 "avatar_url": 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
             },
             {
